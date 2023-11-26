@@ -1,5 +1,10 @@
 import fs from "fs";
 
+/**
+ * `getStore` returns the store.json value
+ *
+ * @returns
+ */
 export async function getStore() {
   let store;
 
@@ -26,6 +31,11 @@ export async function getStore() {
   return store;
 }
 
+/**
+ * `saveToStore` update keys in the store.json file.
+ *
+ * @param object key and value to update
+ */
 export async function saveToStore(object) {
   const store = JSON.parse(fs.readFileSync("./store.json", "utf-8"));
 
