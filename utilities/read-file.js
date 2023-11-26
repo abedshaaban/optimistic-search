@@ -1,9 +1,18 @@
 import { PDFExtract } from "pdf.js-extract";
 import { getTextExtractor } from "office-text-extractor";
 
+/**
+ * initialize instances
+ */
 const pdfExtract = new PDFExtract();
 const wordExtractor = getTextExtractor();
 
+/**
+ * `readPDF` function extracts text from a pdf file.
+ *
+ * @param path
+ * @returns text read from a pdf
+ */
 export function readPDF(path) {
   const options = {};
   let text = "";
@@ -27,6 +36,12 @@ export function readPDF(path) {
   });
 }
 
+/**
+ * `readWord` function extracts text from a docx file.
+ *
+ * @param path
+ * @returns text read from a docx
+ */
 export async function readWord(path) {
   const text = await wordExtractor.extractText({ input: path, type: "file" });
 
