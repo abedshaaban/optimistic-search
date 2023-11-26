@@ -1,0 +1,15 @@
+{
+  "name": "optimistic-search",
+  "version": "1.0.0",
+  "description": "- [ ] read data from files (pdf, word, json, ...)\r - [ ] read data from a specific folder on the local machine\r - [ ] tokenize the data\r - [ ] take input from the user and search for the results\r - [ ] return the results in a good format",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdf.js-extract": "^0.2.1"
+  }
+}
