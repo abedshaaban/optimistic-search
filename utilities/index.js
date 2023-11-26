@@ -1,3 +1,3 @@
-import { readPDF, readWord } from "./read-file.js";
+import { readPDF, readWord, readTxt } from "./read-file.js";
 
-export { readPDF, readWord };
+export { readPDF, readWord, readTxt };

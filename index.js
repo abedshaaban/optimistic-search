@@ -1,4 +1,4 @@
-import { readPDF, readWord } from "./utilities/index.js";
+import { readPDF, readWord, readTxt } from "./utilities/index.js";
 
 const baseFolder = "./local-files";
 
@@ -10,6 +10,10 @@ async function init() {
   const wordData = await readWord(`${baseFolder}/word-sample.docx`);
 
   console.log(wordData);
+
+  const txTData = await readWord(`${baseFolder}/txt-sample.txt`);
+
+  console.log(txTData);
 }
 
 init();
