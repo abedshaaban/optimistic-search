@@ -22,12 +22,25 @@
         </div>
 
         <div class="main-content-user flex-row">
-          <input type="text" placeholder="project x, ai, assignment x, ..." />
-          <a href="">
+          <input
+            id="input-user"
+            type="text"
+            placeholder="project x, ai, assignment x, ..." />
+
+          <a id="query-to-link" href="">
             <img src="./public/searxng.svg" alt="Search icon" />
           </a>
         </div>
       </div>
     </main>
   </body>
+
+  <script>
+    const inputUser = document.getElementById("input-user");
+    const link = document.getElementById("query-to-link");
+
+    inputUser.addEventListener("change", () => {
+      link.href = `/search?q=${inputUser.value}`;
+    });
+  </script>
 </html>
