@@ -3,24 +3,27 @@ import {
   readWord,
   readTxt,
   getFileExtension,
+  getFiles,
 } from "./utilities/index.js";
 
 const baseFolder = "./local-files";
 
 async function init() {
-  const pdfData = await readPDF(`${baseFolder}/pdf-sample.pdf`);
+  //   const pdfData = await readPDF(`${baseFolder}/pdf-sample.pdf`);
 
-  console.log(pdfData);
+  //   console.log(pdfData);
 
-  const wordData = await readWord(`${baseFolder}/word-sample.docx`);
+  //   const wordData = await readWord(`${baseFolder}/word-sample.docx`);
 
-  console.log(wordData);
+  //   console.log(wordData);
 
-  const txTData = await readWord(`${baseFolder}/txt-sample.txt`);
+  //   const txTData = await readWord(`${baseFolder}/txt-sample.txt`);
 
-  console.log(txTData);
+  //   console.log(txTData);
 
-  console.log(getFileExtension("pdf-smaple.pdf"));
+  //   console.log(getFileExtension("pdf-smaple.pdf"));
+
+  console.log(getFiles(baseFolder));
 }
 
 init();

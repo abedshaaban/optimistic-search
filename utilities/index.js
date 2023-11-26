@@ -1,4 +1,4 @@
 import { readPDF, readWord, readTxt } from "./read-file.js";
-import { getFileExtension } from "./file-helpers.js";
+import { getFileExtension, getFiles } from "./file-helpers.js";
 
-export { readPDF, readWord, readTxt, getFileExtension };
+export { readPDF, readWord, readTxt, getFileExtension, getFiles };
