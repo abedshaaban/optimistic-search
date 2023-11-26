@@ -5,7 +5,7 @@ import {
   getFileData,
   readJson,
 } from "./read-file.js";
-import { getFileExtension, getFiles } from "./file-helpers.js";
+import { getFileExtension, getFiles, getStore } from "./file-helpers.js";
 
 export {
   readPDF,
@@ -15,4 +15,5 @@ export {
   getFiles,
   getFileData,
   readJson,
+  getStore,
 };
