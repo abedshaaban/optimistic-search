@@ -99,3 +99,20 @@ export async function getFileData(filePath) {
 
   return data.replace(/\n/g, "");
 }
+
+/**
+ * `readJson` takes a file path and returns the data contained in that file
+ *
+ * @param path
+ * @returns data in a json file
+ */
+export async function readJson(path) {
+  try {
+    const info = fs.readFileSync(path, "utf8");
+    const data = await JSON.parse(info);
+    return data;
+  } catch (err) {
+    console.error(err);
+    throw new Error("Error occurred when reading JSON file");
+  }
+}
