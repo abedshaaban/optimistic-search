@@ -94,7 +94,8 @@ export async function getFileData(filePath) {
       break;
 
     default:
-      throw new Error("file type not supported yet!");
+      // throw new Error("file type not supported yet!");
+      data = "";
   }
 
   return data.replace(/\n/g, "");

@@ -10,18 +10,13 @@ import {
 let index = [];
 
 async function init() {
-  const store = await getStore();
-
-  if (store?.storage?.length === 0) {
-    // get files inside the base folder
-
+  async function indexlocaFiles() {
     const files = getFiles(store.base_folder);
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const fileData = await getFileData(file);
       await getTokens(fileData)
         .then((tokens) => {
-          console.log(tokens);
           index.push({
             id: file,
             index: tokens,
@@ -32,6 +27,14 @@ async function init() {
           console.error(error);
         });
     }
+  }
+
+  const store = await getStore();
+
+  if (store?.storage?.length === 0) {
+    // get files inside the base folder
+
+    indexlocaFiles();
 
     await saveToStore({ storage: index });
   } else {
@@ -44,24 +47,26 @@ async function init() {
 
   console.log(tokenized_query);
 
-  function result() {
-    let outcome = [];
+  // function result() {
+  //   let outcome = [];
 
-    for (let i = 0; i < store.storage.length; i++) {
-      const element = store.storage[i];
-      const subtract = tokenized_query - element.index;
+  //   for (let i = 0; i < store.storage.length; i++) {
+  //     const element = store.storage[i];
+  //     const subtract = tokenized_query - element.index;
 
-      outcome.push({ value: subtract, path: element.id });
-    }
+  //     outcome.push({ value: subtract, path: element.id });
+  //   }
 
-    const sortedData = outcome.sort(
-      (a, b) => Math.abs(a.value) - Math.abs(b.value)
-    );
+  //   const sortedData = outcome.sort(
+  //     (a, b) => Math.abs(a.value) - Math.abs(b.value)
+  //   );
 
-    console.log(sortedData);
-  }
+  //   console.log(sortedData);
+  // }
 
-  result();
+  // result();
+
+  console.log(files);
 }
 
 init();
