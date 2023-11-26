@@ -10,11 +10,17 @@ import {
 let index = [];
 
 async function init() {
-  async function indexlocaFiles() {
-    const files = getFiles(store.base_folder);
+  const store = await getStore();
+
+  if (store?.storage?.length === 0) {
+    // get files inside the base folder
+
+    const files = await getFiles(store.base_folder);
+
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const fileData = await getFileData(file);
+
       await getTokens(fileData)
         .then((tokens) => {
           index.push({
@@ -27,14 +33,6 @@ async function init() {
           console.error(error);
         });
     }
-  }
-
-  const store = await getStore();
-
-  if (store?.storage?.length === 0) {
-    // get files inside the base folder
-
-    indexlocaFiles();
 
     await saveToStore({ storage: index });
   } else {
@@ -42,7 +40,7 @@ async function init() {
     index = store.storage;
   }
 
-  const query = "developer";
+  const query = "hello";
   const tokenized_query = await getTokens(query);
 
   console.log(tokenized_query);
@@ -65,8 +63,6 @@ async function init() {
   // }
 
   // result();
-
-  console.log(files);
 }
 
 init();
