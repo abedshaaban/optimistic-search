@@ -10,32 +10,24 @@
   </head>
 
   <body>
-    <header class="header flex-row">
+    <header class="header header-search flex-row">
       <div class="header-title">
         <a href="/">Optimistic Search</a>
       </div>
+
+      <div class="main-content-user flex-row">
+        <input
+          id="input-user"
+          type="text"
+          placeholder="project x, ai, assignment x, ..." />
+
+        <a id="query-to-link" href="">
+          <img src="./public/searxng.svg" alt="Search icon" />
+        </a>
+      </div>
     </header>
 
-    <main class="main flex-col">
-      <div class="flex-col">
-        <div class="main-content flex-col">
-          <h1>Optimistic Search</h1>
-
-          <p>Google but for your local files.</p>
-        </div>
-
-        <div class="main-content-user flex-row">
-          <input
-            id="input-user"
-            type="text"
-            placeholder="project x, ai, assignment x, ..." />
-
-          <a id="query-to-link" href="">
-            <img src="./public/searxng.svg" alt="Search icon" />
-          </a>
-        </div>
-      </div>
-    </main>
+    <main class="main flex-col"></main>
   </body>
 
   <script>
