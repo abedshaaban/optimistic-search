@@ -4,21 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Optimistic Search | Google For Local Files</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/home.css" />
   </head>
   <body>
-    <header>
-      <div>Optimistic Search</div>
+    <header class="header flex-row">
+      <div class="header-title">Optimistic Search</div>
     </header>
 
-    <main>
-      <div>
-        <div>
+    <main class="main flex-col">
+      <div class="flex-col">
+        <div class="main-content flex-col">
           <h1>Optimistic Search</h1>
 
           <p>Google but for your local files.</p>
         </div>
 
-        <div><input type="text" /></div>
+        <div class="main-content-user flex-row">
+          <input type="text" placeholder="project x, ai, assignment x, ..." />
+          <a href="">
+            <img src="./public/searxng.svg" alt="Search icon" />
+          </a>
+        </div>
       </div>
     </main>
   </body>
