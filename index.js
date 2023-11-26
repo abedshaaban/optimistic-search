@@ -1,4 +1,9 @@
-import { readPDF, readWord, readTxt } from "./utilities/index.js";
+import {
+  readPDF,
+  readWord,
+  readTxt,
+  getFileExtension,
+} from "./utilities/index.js";
 
 const baseFolder = "./local-files";
 
@@ -14,6 +19,8 @@ async function init() {
   const txTData = await readWord(`${baseFolder}/txt-sample.txt`);
 
   console.log(txTData);
+
+  console.log(getFileExtension("pdf-smaple.pdf"));
 }
 
 init();
