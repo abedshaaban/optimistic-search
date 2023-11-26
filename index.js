@@ -40,29 +40,25 @@ async function init() {
     index = store.storage;
   }
 
-  const query = "hello";
-  const tokenized_query = await getTokens(query);
+  async function result(query) {
+    const tokenized_query = await getTokens(query);
+    let outcome = [];
 
-  console.log(tokenized_query);
+    for (let i = 0; i < store.storage.length; i++) {
+      const element = store.storage[i];
+      const subtract = tokenized_query - element.index;
 
-  // function result() {
-  //   let outcome = [];
+      outcome.push({ value: subtract, path: element.id });
+    }
 
-  //   for (let i = 0; i < store.storage.length; i++) {
-  //     const element = store.storage[i];
-  //     const subtract = tokenized_query - element.index;
+    const sortedData = outcome.sort(
+      (a, b) => Math.abs(a.value) - Math.abs(b.value)
+    );
 
-  //     outcome.push({ value: subtract, path: element.id });
-  //   }
+    return sortedData;
+  }
 
-  //   const sortedData = outcome.sort(
-  //     (a, b) => Math.abs(a.value) - Math.abs(b.value)
-  //   );
-
-  //   console.log(sortedData);
-  // }
-
-  // result();
+  console.log(await result("lorem"));
 }
 
 init();
