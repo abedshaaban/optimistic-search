@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "i": "^0.3.7",
+    "npm": "^10.2.4",
+    "office-text-extractor": "^3.0.2",
     "pdf.js-extract": "^0.2.1"
   }
 }

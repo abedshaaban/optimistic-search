@@ -1,9 +1,13 @@
 import { PDFExtract } from "pdf.js-extract";
+import { readFile } from "node:fs/promises";
+import { getTextExtractor } from "office-text-extractor";
+
+const pdfExtract = new PDFExtract();
+const wordExtractor = getTextExtractor();
 
 export function readPDF(path) {
-  const pdfExtract = new PDFExtract();
   const options = {};
-  let dataRead = "";
+  let text = "";
 
   return new Promise((resolve, reject) => {
     pdfExtract.extract(path, options, (err, data) => {
@@ -16,10 +20,16 @@ export function readPDF(path) {
         const page = data?.pages[i];
         for (let j = 0; j < page?.content?.length; j++) {
           const line = page?.content[j];
-          dataRead += line.str;
+          text += line.str;
         }
       }
-      resolve(dataRead);
+      resolve(text);
     });
   });
+}
+
+export async function readWord(path) {
+  const text = await wordExtractor.extractText({ input: path, type: "file" });
+
+  return text;
 }
