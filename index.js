@@ -9,6 +9,25 @@ import {
 const baseFolder = "./local-files";
 
 async function init() {
+  async function getFileData(filePath) {
+    switch (await getFileExtension(filePath)) {
+      case "pdf":
+        console.log(await readPDF(filePath));
+        break;
+
+      case "docx":
+        console.log(await readWord(filePath));
+        break;
+
+      case "txt":
+        console.log(await readTxt(filePath));
+        break;
+
+      default:
+        throw new Error("file type not supported yet!");
+    }
+  }
+
   const files = getFiles(baseFolder);
 
   console.log(files);
@@ -16,22 +35,7 @@ async function init() {
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
 
-    switch (getFileExtension(file)) {
-      case "pdf":
-        console.log(await readPDF(file));
-        break;
-
-      case "docx":
-        console.log(await readWord(file));
-        break;
-
-      case "txt":
-        console.log(readTxt(file));
-        break;
-
-      default:
-        throw new Error("file type not supported yet!");
-    }
+    console.log(await getFileData(file));
   }
 }
 

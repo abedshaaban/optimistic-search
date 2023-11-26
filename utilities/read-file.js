@@ -22,6 +22,7 @@ export function readPDF(path) {
     pdfExtract.extract(path, options, (err, data) => {
       if (err) {
         reject(err);
+        console.log(err);
         return;
       }
 
@@ -56,15 +57,15 @@ export async function readWord(path) {
  * @returns text read from a txt
  */
 export function readTxt(path) {
-  let text = "";
-  fs.readFile(path, (err, data) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, (err, data) => {
+      if (err) {
+        reject(err);
+        console.log(err);
+        return;
+      }
 
-    text = data.toString();
+      resolve(data.toString());
+    });
   });
-
-  return text;
 }
