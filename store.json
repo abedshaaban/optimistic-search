@@ -3,24 +3,24 @@
   "base_folder": "./local-files",
   "storage": [
     {
-      "id": "local-files\\pdf-sample.pdf",
+      "path": "local-files\\pdf-sample.pdf",
       "index": 0.038539137691259384,
-      "last_modified": "2023-11-26T08:31:49.149Z"
+      "lastModified": "2023-11-26T08:31:49.149Z"
     },
     {
-      "id": "local-files\\txt-sample.txt",
+      "path": "local-files\\txt-sample.txt",
       "index": -0.017085475847125053,
-      "last_modified": "2023-11-26T09:47:54.076Z"
+      "lastModified": "2023-11-26T09:47:54.076Z"
     },
     {
-      "id": "local-files\\user\\txt-sample.txt",
+      "path": "local-files\\user\\txt-sample.txt",
       "index": -0.061387866735458374,
-      "last_modified": "2023-11-26T10:03:18.914Z"
+      "lastModified": "2023-11-26T10:03:18.914Z"
     },
     {
-      "id": "local-files\\word-sample.docx",
+      "path": "local-files\\word-sample.docx",
       "index": 0.3285844922065735,
-      "last_modified": "2023-11-26T10:50:28.413Z"
+      "lastModified": "2023-11-26T10:50:28.413Z"
     }
   ]
 }

@@ -1,64 +1,19 @@
-import fs from "fs";
-import { getTokens } from "./model/index.js";
-import {
-  getFiles,
-  getFileData,
-  getStore,
-  saveToStore,
-} from "./utilities/index.js";
-
-let index = [];
+import { getStore } from "./utilities/index.js";
+import { Engine } from "./core/index.js";
 
 async function init() {
   const store = await getStore();
+  const searchEngine = new Engine(store.base_folder);
 
   if (store?.storage?.length === 0) {
-    // get files inside the base folder
-
-    const files = await getFiles(store.base_folder);
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const fileData = await getFileData(file);
-
-      await getTokens(fileData)
-        .then((tokens) => {
-          index.push({
-            id: file,
-            index: tokens,
-            last_modified: fs.statSync(file).mtime,
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-
-    await saveToStore({ storage: index });
+    await searchEngine.indexFiles();
   } else {
-    // check for out dated indexs by last modified date then load the storage
-    index = store.storage;
+    searchEngine.setIndex(store.storage);
   }
 
-  async function result(query) {
-    const tokenized_query = await getTokens(query);
-    let outcome = [];
+  const results = await searchEngine.search("ai");
 
-    for (let i = 0; i < store.storage.length; i++) {
-      const element = store.storage[i];
-      const subtract = tokenized_query - element.index;
-
-      outcome.push({ value: subtract, path: element.id });
-    }
-
-    const sortedData = outcome.sort(
-      (a, b) => Math.abs(a.value) - Math.abs(b.value)
-    );
-
-    return sortedData;
-  }
-
-  console.log(await result("lorem"));
+  console.log(results);
 }
 
 init();
