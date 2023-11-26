@@ -2,6 +2,12 @@ import fs from "fs";
 import { getTokens } from "../model/index.js";
 import { getFileData, getFiles, saveToStore } from "../utilities/index.js";
 
+/**
+ * `Page` class, takes a path for the file and the token of the content.
+ *
+ * @param path file path.
+ * @param token token after tokenizing.
+ */
 class Page {
   constructor(path, token) {
     this.path = path;
@@ -10,6 +16,15 @@ class Page {
   }
 }
 
+/**
+ * `Engine` class for the search engine. Takes baseFolder as a param to
+ * initialize and contains the index of the pages.
+ *
+ * @param baseFolder folder to search in.
+ *
+ * @returns an engine that can index ad search in a folder.
+ *
+ */
 export class Engine {
   constructor(baseFolder) {
     this.baseFolder = baseFolder;
