@@ -57,3 +57,50 @@
 .main-content-user > a > img {
   width: 12px;
 }
+
+.result {
+  width: 100px;
+  height: 100px;
+  padding: 1px 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  cursor: pointer;
+  transition-duration: 0.15s;
+  border-radius: 8px;
+}
+
+.result:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.result > img {
+  border-radius: 9px;
+  width: 70px;
+  padding: 3px;
+  fill: white;
+}
+
+.result > p {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.pdf {
+  background-color: #dc0032 !important;
+}
+
+.docs {
+  background-color: #4285f4 !important;
+}
+
+.txt {
+  background-color: #8ca1af !important;
+}
+
+.results-from-query {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
