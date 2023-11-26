@@ -5,7 +5,7 @@ import fs from "fs";
  *
  * @returns
  */
-export async function getStore() {
+export function getStore() {
   let store;
 
   if (fs.existsSync("./store.json")) {
