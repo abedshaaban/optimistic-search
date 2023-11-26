@@ -1,6 +1,7 @@
 import { PDFExtract } from "pdf.js-extract";
 import { getTextExtractor } from "office-text-extractor";
 import fs from "fs";
+import { getFileExtension } from "./index.js";
 
 /**
  * initialize instances
@@ -68,4 +69,33 @@ export function readTxt(path) {
       resolve(data.toString());
     });
   });
+}
+
+/**
+ * `getFileData` takes a file path and returns the data contained in that file
+ *
+ * @param filePath
+ * @returns text in a file
+ */
+export async function getFileData(filePath) {
+  let data;
+
+  switch (await getFileExtension(filePath)) {
+    case "pdf":
+      data = await readPDF(filePath);
+      break;
+
+    case "docx":
+      data = await readWord(filePath);
+      break;
+
+    case "txt":
+      data = await readTxt(filePath);
+      break;
+
+    default:
+      throw new Error("file type not supported yet!");
+  }
+
+  return data.replace(/\n/g, "");
 }

@@ -1,58 +1,29 @@
 import { getTokens } from "./model/index.js";
-import {
-  readPDF,
-  readWord,
-  readTxt,
-  getFileExtension,
-  getFiles,
-} from "./utilities/index.js";
+import { getFiles, getFileData } from "./utilities/index.js";
 
 const baseFolder = "./local-files";
 
+let index = [];
+
 async function init() {
-  // async function getFileData(filePath) {
-  //   let data;
+  const files = getFiles(baseFolder);
 
-  //   switch (await getFileExtension(filePath)) {
-  //     case "pdf":
-  //       data = await readPDF(filePath);
-  //       break;
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
 
-  //     case "docx":
-  //       data = await readWord(filePath);
-  //       break;
+    const fileData = await getFileData(file);
 
-  //     case "txt":
-  //       data = await readTxt(filePath);
-  //       break;
+    await getTokens(fileData)
+      .then((tokens) => {
+        console.log(tokens);
+        index.push({ id: file, index: tokens });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-  //     default:
-  //       throw new Error("file type not supported yet!");
-  //   }
-
-  //   return data.replace(/\n/g, "");
-  // }
-
-  // const files = getFiles(baseFolder);
-
-  // console.log(files);
-
-  // for (let i = 0; i < files.length; i++) {
-  //   const file = files[i];
-
-  //   const fileData = await getFileData(file);
-  //   console.log(fileData);
-  // }
-
-  const documents = "Your input text here";
-
-  await getTokens(documents)
-    .then((tokens) => {
-      console.log(tokens);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  console.log(index);
 }
 
 init();
