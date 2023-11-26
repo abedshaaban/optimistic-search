@@ -11,23 +11,6 @@
     <link rel="icon" type="image/x-icon" href="./public/searxng.svg" />
   </head>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get("q");
-
-    async function getData(q) {
-      const req = await fetch(`http://localhost:5555/search?q=${q}`, {
-        mode: "cors",
-      });
-      const data = await req.json();
-      return await data;
-    }
-
-    getData(query).then((val) => {
-      console.log(val);
-    });
-  </script>
-
   <body>
     <header class="header header-search flex-row">
       <div class="header-title colored">
@@ -46,22 +29,7 @@
       </div>
     </header>
 
-    <main class="results-from-query">
-      <div class="result flex-col">
-        <img class="pdf" src="./public/pdf.svg" alt="pdf" />
-        <p>todo.pdf</p>
-      </div>
-
-      <div class="result flex-cols">
-        <img class="docs" src="./public/docs.svg" alt="docs" />
-        <p>word.docs</p>
-      </div>
-
-      <div class="result flex-col">
-        <img class="txt" src="./public/txt.svg" alt="txt" />
-        <p>new.txt</p>
-      </div>
-    </main>
+    <main id="query-results" class="results-from-query"></main>
   </body>
 
   <script>
@@ -70,6 +38,45 @@
 
     inputUser.addEventListener("change", () => {
       link.href = `/search.html?q=${inputUser.value}`;
+    });
+  </script>
+
+  <script>
+    const mainResults = document.getElementById("query-results");
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get("q");
+
+    async function getData(q) {
+      const req = await fetch(`http://localhost:5555/search?q=${q}`, {
+        mode: "cors",
+      });
+      const data = await req.json();
+      return await data;
+    }
+
+    function getFileExtension(fileName) {
+      const fileSplite = fileName.split(".");
+      const fileExtenstion = fileSplite.pop();
+
+      return fileExtenstion;
+    }
+
+    mainResults.innerHTML = "";
+
+    getData(query).then((val) => {
+      val.map((element, index) => {
+        mainResults.innerHTML += `<div key="${index}" class="result flex-col">
+          ${
+            getFileExtension(element.path) === "pdf"
+              ? `<img class="pdf" src="./public/pdf.svg" alt="pdf" />`
+              : getFileExtension(element.path) === "txt"
+              ? `<img class="txt" src="./public/txt.svg" alt="txt" />`
+              : `<img class="docs" src="./public/docs.svg" alt="docs" />`
+          }
+
+            <p>${element.path.split("\\").pop().split(".")[0]}</p>
+          </div>`;
+      });
     });
   </script>
 </html>
