@@ -26,4 +26,9 @@ a {
   flex-flow: row;
 }
 
-
+.colored {
+  background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
