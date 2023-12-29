@@ -10,6 +10,7 @@ A personal search engine for you.
 - [x] take input from the user and search for the results
 - [x] return the results in a good format
 - [ ] show folder path on hover
+- [ ] add crawler for websites
 
 
 ## development
